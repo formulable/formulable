@@ -144,7 +144,9 @@ function pageHandler(response) {
                 }
                 $.getScript('http://spreadsheets.google.com/tq?key=' + gskey + '&range=formulable!A:E&tq=select%20B%20where%20(B%20contains%20%22id='+formulableObjectName+'%22)'+formulableOutgoingRelationsQuery+'&tqx=responseHandler:relationsHandler');
         } catch (err) {
-        document.getElementById("formulable").innerHTML = '<div class="alert alert-warning"><h2>Woooops!!! It seems that formulable is updating the database. Try refreshing the page.</h2></div><div class="alert alert-danger">For CERN staff only:</br> We have repeatedly warned the Program Director about the risk of using formulable to manage the Large Hadron Collider, at least during beta testing. We decline any responsability in case of accident and advise you to run in the oposite direction if you see a super-tiny black dot swallowing the room\'s furniture.</div>';
+        document.getElementById("formulable").innerHTML = '<iframe id="ytplayer" type="text/html" width="640" height="360"
+src="https://www.youtube.com/embed/vUGNUUefuEg?controls=0&rel=0&showinfo=0&color=white&theme=light"
+frameborder="0" allowfullscreen>';
         }
 }
 
