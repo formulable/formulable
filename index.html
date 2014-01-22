@@ -144,7 +144,7 @@ function pageHandler(response) {
                 }
                 $.getScript('http://spreadsheets.google.com/tq?key=' + gskey + '&range=formulable!A:E&tq=select%20B%20where%20(B%20contains%20%22id='+formulableObjectName+'%22)'+formulableOutgoingRelationsQuery+'&tqx=responseHandler:relationsHandler');
         } catch (err) {
-        document.getElementById("formulable").innerHTML = '<iframe id=\"ytplayer\" type=\"text\/html\" width=\"720\" height=\"420\"\r\nsrc=\"https:\/\/www.youtube.com\/embed\/vUGNUUefuEg?controls=0&rel=0&showinfo=0&color=white&theme=light\"\r\nframeborder=\"0\"  style=\"border: none; width: 100%; height: 100%\"></iframe>';
+        document.getElementById("formulable").innerHTML = '<iframe id=\"ytplayer\" type=\"text\/html\" width=\"720\" height=\"480\"\r\nsrc=\"https:\/\/www.youtube.com\/embed\/vUGNUUefuEg?controls=0&rel=0&showinfo=0&color=white&theme=light\"\r\nframeborder=\"0\"  style=\"border: none; width: 100%\"></iframe>';
         }
 }
 
