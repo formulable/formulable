@@ -242,7 +242,7 @@ var createExplorer = function(dataset, state) {
   $el.appendTo(window.explorerDiv);
 
   var template = ' \
-     <div id="{{id}}" class="record media"><h3 class="formulable-card-name">{{#icon}}<img src="{{icon}}" alt="icon" class="icon-small"> {{/icon}}{{type}}: <a href="{{url}}">{{name}}</a></h3>{{#image}}<div class="pull-left"><img src="{{image}}" alt="image" class="formulable-thumbnail media-object"></div>{{/image}}<div class="media-body"><p class="fields">{{{fields}}}</p><p class="excerpt">{{{excerpt}}}</p></div></div> \
+     <div id="{{id}}" class="record media"><h3 class="formulable-card-name">{{#icon}}<img src="{{icon}}" alt="icon" class="icon-small"> {{/icon}}{{type}}: {{{link}}}</h3>{{#image}}<div class="pull-left"><img src="{{image}}" alt="image" class="formulable-thumbnail media-object"></div>{{/image}}<div class="media-body"><p class="fields">{{{fields}}}</p><p class="excerpt">{{{excerpt}}}</p></div></div> \
 ';
 
 var SearchView = Backbone.View.extend({
