@@ -163,7 +163,7 @@ function relationsHandler(response) {
 
             var formulableRelationsDatasetJSONWithoutTypesAndFiles =jQuery.extend(true, {}, formulableRelationsDatasetJSON);
 				formulableRelationsDatasetJSONWithoutTypesAndFiles.records = jQuery.grep(formulableRelationsDatasetJSONWithoutTypesAndFiles.records, function(element, index){
-				if (element.type != 'type' && element.type != 'file' && element.type != '' && element.name != '') {
+				if (element.type != 'type' && element.type != 'file' && element.id != slug && element.type != '' && element.name != '') {
 				  return element; // retain appropriate elements
 				}
 			});
