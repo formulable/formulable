@@ -137,7 +137,7 @@ function pageHandler(response) {
                   formulableOutgoingRelations = formulableOutgoingRelationsArray.join('%20or%20');
                   formulableOutgoingRelations = formulableOutgoingRelations.replace(/ /g,'-');
                   formulableOutgoingRelations = formulableOutgoingRelations.replace(/formulable-value-link\'>(.*?)<\/a>/g,'(A%3D%22$1%22)');
-                  formulableOutgoingRelations = '(A%3D%22sheet-object-1%22)';
+//                  formulableOutgoingRelations = '(A%3D%22sheet-object-1%22)';
                 } catch (err) {}
                 var formulableOutgoingRelationsQuery = '';
                 if (formulableOutgoingRelations) {
