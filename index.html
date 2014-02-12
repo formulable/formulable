@@ -132,7 +132,7 @@ function pageHandler(response) {
                 document.getElementById("formulable").innerHTML = formulableObjectHandlebarsHTML;
                 var formulableOutgoingRelations = '';
                 try {
-                  formulableOutgoingRelationsString = response.table.rows[0].c[3].v;
+                  formulableOutgoingRelationsString = response.table.rows[0].c[0].v;
                   formulableOutgoingRelationsArray = formulableOutgoingRelationsString.match(/formulable-value-link\'>.*?<\/a>/g);
                   formulableOutgoingRelations = formulableOutgoingRelationsArray.join('%20or%20');
                   formulableOutgoingRelations = formulableOutgoingRelations.replace(/ /g,'-');
