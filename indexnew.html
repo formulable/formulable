@@ -119,12 +119,9 @@ function GetURLParameter(sParam) {
 var gskey = GetURLParameter('key') || '0AkYWdwxH6K5XdGxUY2RaZWNlUEFHNlk3b3MwTWZxN3c';
 var slug = GetURLParameter('id') || 'home';
 
-<script type="text/javascript">
 function processObject(objectJSON) {
-//	 alert("yeah");
 document.getElementById('formulable').innerHTML = JSON.stringify(objectJSON);
 }
-</script>
 
 function pageHandler(response) {
         try {
