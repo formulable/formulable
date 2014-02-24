@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta charset="utf-8">
+	<meta name="description" content="Google Drive based Structured CMS">
+	<meta name="author" content="formulable.com">
+	<title>formulable - google drive powered CMS</title>
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<!-- Recline CSS components -->
+	<link rel="stylesheet" type="text/css" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/leaflet.css">
+	<!--[if lte IE 8]>
+	<link rel="stylesheet" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/leaflet.ie.css" />
+	<![endif]-->
+	<link rel="stylesheet" type="text/css" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/MarkerCluster.css">
+	<link rel="stylesheet" type="text/css" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/MarkerCluster.Default.css">
+	<!--[if lte IE 8]>
+	<link rel="stylesheet" http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/MarkerCluster.Default.ie.css" />
+	<![endif]-->
+	<link rel="stylesheet" type="text/css" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/slick.grid.css">
+	<link rel="stylesheet" type="text/css" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/grid.css">
+	<link rel="stylesheet" type="text/css" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/slickgrid.css"-->
+	<link rel="stylesheet" type="text/css" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/flot.css">
+	<link rel="stylesheet" type="text/css" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/map.css">
+	<link rel="stylesheet" type="text/css" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/multiview.css">
+	<link rel="stylesheet" type="text/css" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/timeline.css">
+	<link rel="stylesheet" type="text/css" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/pygments.css">
+	<link rel="stylesheet" type="text/css" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/style.css">
+ 
+ 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js"></script>
+	<script src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/swag/lib/swag.js"></script>
+	<script>Swag.registerHelpers();</script>
+  
+  <link rel="stylesheet" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/leaflet.css">
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/leaflet.ie.css" />
+  <![endif]-->
+  <link rel="stylesheet" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/MarkerCluster.css">
+  <link rel="stylesheet" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/MarkerCluster.Default.css">
+  <!--[if lte IE 8]>
+  <link rel="stylesheet" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/MarkerCluster.Default.ie.css" />
+  <![endif]-->
+  <link rel="stylesheet" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/slick.grid.css">
+  <link rel="stylesheet" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/timeline.css">
+
+  <!-- Recline CSS components -->
+  <link rel="stylesheet" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/grid.css">
+  <link rel="stylesheet" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/slickgrid.css">
+  <link rel="stylesheet" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/flot.css">
+  <link rel="stylesheet" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/map.css">
+  <link rel="stylesheet" href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/multiview.css">
+
+  <!-- /Recline CSS components -->
+
+  <!-- 3rd party JS libraries -->
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/underscore.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/backbone.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/mustache.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/bootstrap.js"></script>
+  <!--[if lte IE 8]>
+  <script language="javascript" type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/"></script>
+  <![endif]-->
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/jquery.flot.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/leaflet.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/leaflet.markercluster.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/jquery-ui-1.8.16.custom.min.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/jquery.event.drag-2.0.min.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/slick.grid.min.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/moment.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/timeline.js"></script>
+
+  <!-- model and backends -->
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/ecma-fixes.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/model.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/backend.memory.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/backend.dataproxy.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/backend.gdocs.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/backend.elasticsearch.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/backend.csv.js"></script>
+
+  <!-- views -->
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/view.grid.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/view.slickgrid.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/view.flot.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/view.graph.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/view.map.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/view.timeline.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/widget.pager.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/widget.queryeditor.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/widget.filtereditor.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/widget.valuefilter.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/widget.facetviewer.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/widget.fields.js"></script>
+  <script type="text/javascript" src="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/view.multiview.js"></script>
+
+
+  <link href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/pygments.css" rel="stylesheet" type="text/css">
+  <link href="http://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container">
+<div id="formulable"></div>
+</div>
+
+<script type="text/javascript">
+
+function GetURLParameter(sParam) {
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++) {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam) {
+            return sParameterName[1];
+        }
+    }
+}
+var gskey = GetURLParameter('key') || '0AkYWdwxH6K5XdGxUY2RaZWNlUEFHNlk3b3MwTWZxN3c';
+var slug = GetURLParameter('id') || 'home';
+
+function pageHandler(response) {
+        try {
+                var formulableObjectJSONString = response.table.rows[0].c[0].v;
+                var formulableObjectJSON = jQuery.parseJSON(formulableObjectJSONString);
+                var formulableObjectName = formulableObjectJSON.name;
+                document.title = "formulable - " + formulableObjectName;
+                formulableObjectTemplate = response.table.rows[0].c[1].v;
+                var formulableObjectTemplateCompiled = Handlebars.compile(formulableObjectTemplate);
+//                window.formulableRelationsTemplate = response.table.rows[0].c[2].v;
+                var formulableObjectHandlebarsHTML = formulableObjectTemplateCompiled(formulableObjectJSON);
+                document.getElementById("formulable").innerHTML = formulableObjectHandlebarsHTML;
+                var formulableOutgoingRelations = '';
+                try {
+                  formulableOutgoingRelationsString = response.table.rows[0].c[0].v;
+                  formulableOutgoingRelationsArray = formulableOutgoingRelationsString.match(/formulable-value-link\'>.*?<\/a>/g);
+                  formulableOutgoingRelations = formulableOutgoingRelationsArray.join('%20or%20');
+                  formulableOutgoingRelations = formulableOutgoingRelations.replace(/ /g,'-');
+                  formulableOutgoingRelations = formulableOutgoingRelations.replace(/formulable-value-link\'>(.*?)<\/a>/g,'(A%3D%22$1%22)');
+//                  formulableOutgoingRelations = '(A%3D%22sheet-object-1%22)';
+                } catch (err) {}
+                var formulableOutgoingRelationsQuery = '';
+                if (formulableOutgoingRelations) {
+                var formulableOutgoingRelationsQuery = '%20or%20' + formulableOutgoingRelations;
+                }
+                $.getScript('http://spreadsheets.google.com/tq?key=' + gskey + '&range=formulable!A:C&tq=select%20B%20where%20(B%20contains%20%22id%3D'+slug+'\'%20class%3D\'formulable-value-link\'%22)'+formulableOutgoingRelationsQuery+'&tqx=responseHandler:relationsHandler');
+        } catch (err) {
+        document.getElementById("formulable").innerHTML = '<div align=\"center\"><iframe id=\"ytplayer\" type=\"text\/html\" width=\"853\" height=\"480\"\r\nsrc=\"https:\/\/www.youtube.com\/embed\/CpBQRRg1Ez0?controls=0&rel=0&showinfo=0&color=white&theme=light&border=0\" frameborder=\"0\"  style=\"border: none; margin: 0 auto\"></iframe></div>';
+        }
+}
+
+function relationsHandler(response) {
+        formulableRelationsRaw = $.map(response.table.rows, function (item, index) {
+            return item.c[0].v;
+        });
+        formulableRelations = '{"relations":[' + formulableRelationsRaw + ']}';
+        if (typeof formulableRelations !== 'undefined' && formulableRelations.length > 0) {
+//            var templateRelations = Handlebars.compile(window.formulableRelationsTemplate);
+            var context = jQuery.parseJSON(formulableRelations);
+ //           var handlebarsHTML = templateRelations(context);
+            var formulableRelationsDatasetString = "{\"records\":[" + formulableRelationsRaw + "]}";
+            var formulableRelationsDatasetJSON = jQuery.parseJSON(formulableRelationsDatasetString.replace('"', '\"'));
+
+            var formulableRelationsDatasetJSONWithoutTypesAndFiles =jQuery.extend(true, {}, formulableRelationsDatasetJSON);
+				formulableRelationsDatasetJSONWithoutTypesAndFiles.records = jQuery.grep(formulableRelationsDatasetJSONWithoutTypesAndFiles.records, function(element, index){
+				if (element.type != 'type' && element.type != 'file' && element.id != slug && element.type != '' && element.name != '') {
+				  return element; // retain appropriate elements
+				}
+			});
+
+            var formulableFilesJSON =jQuery.extend(true, {}, formulableRelationsDatasetJSON);
+				formulableFilesJSON.records = jQuery.grep(formulableFilesJSON.records, function(element, index){
+				if (element.type == 'file') {
+				  return element; // retain appropriate elements
+				}
+			});
+				
+			console.log(formulableRelationsDatasetJSON);
+			console.log(formulableRelationsDatasetJSONWithoutTypesAndFiles);
+			console.log(formulableFilesJSON);
+
+            try {
+                var templateFiles = Handlebars.compile("{{#each records}}<div class='item carouselImg' style='width:100%'>{{{html}}}</div>{{/each}}");
+                var handlebarsFilesHTML = templateFiles(formulableFilesJSON);
+                try {
+                document.getElementById("files-list").innerHTML = handlebarsFilesHTML;
+                $("#files-list div:nth-child(1)").addClass('active');
+                var showMedia = document.getElementById("formulable-media").style.display = 'inline';
+                } catch (err) {
+                }
+            } catch (err) {
+                window.alert(err);
+            }
+        }
+
+        //recline app
+        jQuery(function ($) {
+            window.dataExplorer = null;
+            window.explorerDiv = $('#formulable-data-explorer');
+            // This is some fancy stuff to allow configuring the multiview from parameters in the query string
+            var state = recline.View.parseQueryString(decodeURIComponent(window.location.search));
+            if (state) {
+                _.each(state, function (value, key) {
+                    try {
+                        value = JSON.parse(value);
+                    } catch (e) {}
+                    state[key] = value;
+                });
+            } else {
+                state.url = 'demo';
+            }
+            var dataset = null;
+            if (state.dataset || state.url) {
+                var datasetInfo = _.extend({
+                        url: state.url,
+                        backend: state.backend
+                    },
+                    state.dataset
+                );
+                dataset = new recline.Model.Dataset(datasetInfo);
+            } else {
+                dataset = new recline.Model.Dataset(formulableRelationsDatasetJSONWithoutTypesAndFiles);
+            }
+			if (formulableRelationsDatasetJSONWithoutTypesAndFiles.records.length > 0) {
+				var $el = $('#formulable-data-explorer');
+				createExplorer(dataset, state);
+				console.log(dataset);
+			}
+        })
+}
+
+
+// make Explorer creation / initialization in a function so we can call it again and again
+var createExplorer = function(dataset, state) {
+  // remove existing data explorer view
+  var reload = false;
+  if (window.dataExplorer) {
+    window.dataExplorer.remove();
+    reload = true;
+  }
+  window.dataExplorer = null;
+  var $el = $('<div />');
+  $el.appendTo(window.explorerDiv);
+
+  var template = ' \
+     <div id="{{id}}" class="record media"><h3 class="formulable-card-name">{{#icon}}<img src="{{icon}}" alt="icon" class="icon-small"> {{/icon}}{{type}}: {{{link}}}</h3>{{#image}}<div class="pull-left"><img src="{{image}}" alt="image" class="formulable-thumbnail media-object"></div>{{/image}}<div class="media-body"><p class="fields">{{{fields}}}</p><p class="excerpt">{{{excerpt}}}</p></div></div> \
+';
+
+var SearchView = Backbone.View.extend({
+  initialize: function(options) {
+    this.el = $(this.el);
+    _.bindAll(this, 'render');
+    this.recordTemplate = options.template;
+    // Every time we do a search the recline.Dataset.records Backbone collection will get reset. We want to re-render each time!
+    this.model.records.bind('reset', this.render);
+    this.templateResults = options.template;
+  },
+
+  // overall template for this view
+  template: ' \
+    <div class="body"> \
+      <div class="sidebar"></div> \
+        <div class="results"> \
+        {{{results}}} \
+        </div> \
+      </div> \
+    <div class="pager-here"></div> \
+  ',
+ 
+  // render the view
+  render: function() {
+    var results = '';
+    if (_.isFunction(this.templateResults)) {
+      var results = _.map(this.model.records.toJSON(), this.templateResults).join('\n');
+    } else {
+      // templateResults is just for one result ...
+      var tmpl = '{{#records}}' + this.templateResults + '{{/records}}'; 
+      var results = Mustache.render(tmpl, {
+        records: this.model.records.toJSON()
+      });
+    }
+    var html = Mustache.render(this.template, {
+      results: results
+    });
+    this.el.html(html);
+
+    var view = new recline.View.FacetViewer({
+      model: this.model
+    });
+    view.render();
+    this.el.find('.sidebar').append(view.el);
+
+    var pager = new recline.View.Pager({
+      model: this.model.queryState
+    });
+    this.el.find('.pager-here').append(pager.el);
+
+    var queryEditor = new recline.View.QueryEditor({
+      model: this.model.queryState
+    });
+    this.el.find('.query-here').append(queryEditor.el);
+  }
+});
+
+  var views = [
+    {
+      id: 'search',
+      label: 'Search',
+      view: new SearchView({
+        model: dataset,
+        template: template
+      })
+    },
+    {
+      id: 'map',
+      label: 'Map',
+      view: new recline.View.Map({
+        model: dataset
+      })
+    },
+    {
+      id: 'timeline',
+      label: 'Timeline',
+      view: new recline.View.Timeline({
+        model: dataset
+      })
+    },
+    {
+      id: 'grid',
+      label: 'Grid',
+      view: new recline.View.SlickGrid({
+        model: dataset
+      })
+    },
+/*
+    {
+      id: 'graph',
+      label: 'Graph',
+      view: new recline.View.Graph({
+        model: dataset,
+
+      })
+    }
+*/
+  ];
+		window.dataExplorer = new recline.View.MultiView({
+			model: dataset,
+			el: $el,
+			state: state,
+			views: views
+		});
+}
+
+</script>
+</div>
+
+<script type="text/javascript">
+(function () {
+$.getScript('http://spreadsheets.google.com/tq?key='+gskey+'&range=formulable!A:E&tq=select%20B,C%20where%20A%20%3D%20%22'+slug+'%22&tqx=responseHandler:pageHandler');
+})()
+</script>
+</body>
+</html>
