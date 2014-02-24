@@ -119,6 +119,13 @@ function GetURLParameter(sParam) {
 var gskey = GetURLParameter('key') || '0AkYWdwxH6K5XdGxUY2RaZWNlUEFHNlk3b3MwTWZxN3c';
 var slug = GetURLParameter('id') || 'home';
 
+<script type="text/javascript">
+function processObject(objectJSON) {
+//	 alert("yeah");
+document.getElementById('formulable').innerHTML = JSON.stringify(objectJSON);
+}
+</script>
+
 function pageHandler(response) {
         try {
                 var formulableObjectJSONString = response.table.rows[0].c[0].v;
@@ -356,7 +363,8 @@ var SearchView = Backbone.View.extend({
 
 <script type="text/javascript">
 (function () {
-$.getScript('http://spreadsheets.google.com/tq?key='+gskey+'&range=formulable!A:E&tq=select%20B,C%20where%20A%20%3D%20%22'+slug+'%22&tqx=responseHandler:pageHandler');
+$.getScript('https://script.google.com/a/macros/lucascervera.com/s/AKfycbzlqymytRvduODIcNDZlmYyQqkmq43tDIOhJ3XXMVHj/dev?id='+slug+'&prefix=processObject');
+// $.getScript('http://spreadsheets.google.com/tq?key='+gskey+'&range=formulable!A:E&tq=select%20B,C%20where%20A%20%3D%20%22'+slug+'%22&tqx=responseHandler:pageHandler');
 })()
 </script>
 </body>
