@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta charset="utf-8">
+        <meta name="description" content="Google Drive based Structured CMS">
+        <meta name="author" content="formulable.com">
+        <title>formulable - google drive powered CMS</title>
+        <link rel="stylesheet" type="text/css" href="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/formulable/formulable.css">
+ 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js"></script>
+        <script src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/swag/lib/swag.js"></script>
+        <script>Swag.registerHelpers();</script>
+  
+   <!-- 3rd party JS libraries -->
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/underscore.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/backbone.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/mustache.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/bootstrap.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/jquery.flot.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/leaflet.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/leaflet.markercluster.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/jquery-ui-1.8.16.custom.min.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/jquery.event.drag-2.0.min.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/slick.grid.min.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/moment.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/timeline.js"></script>
+
+  <!-- model and backends -->
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/ecma-fixes.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/model.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/backend.memory.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/backend.dataproxy.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/backend.gdocs.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/backend.elasticsearch.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/backend.csv.js"></script>
+
+  <!-- views -->
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/view.grid.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/view.slickgrid.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/view.flot.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/view.graph.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/view.map.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/view.timeline.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/widget.pager.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/widget.queryeditor.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/widget.filtereditor.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/widget.valuefilter.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/widget.facetviewer.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/widget.fields.js"></script>
+  <script type="text/javascript" src="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/view.multiview.js"></script>
+
+
+  <link href="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/pygments.css" rel="stylesheet" type="text/css">
+  <link href="https://googledrive.com/host/0B0YWdwxH6K5XMWVxeVlDUlhCSXc/recline-plain/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container">
+	<div id="fmlb-navbar"></div>
+	<div id="fmlb-object">loading...</div>
+	<div id='fmlb-incoming-relations'><div id='fmlb-data-explorer' class='fmlb-block fmlb-relations'></div></div>
+</div>
+
+<script type="text/javascript">
+function GetURLParameter(sParam) {
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++) {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam) {
+            return sParameterName[1];
+        }
+    }
+}
+
+var scriptId = GetURLParameter('scriptid') || '';
+var id = GetURLParameter('id') || 'home';
+var fmlbAppHasIcons = false;
+
+function processApp(fmlbObjectJSON) {
+	fmlbAppHasIcons = fmlbObjectJSON.formulableApp.hasIcons;
+    createNavbar(fmlbObjectJSON);
+}
+
+function processObject(objectJSON) {
+	var fmlbObjectJSONString = JSON.stringify(objectJSON)
+    var fmlbObjectJSON = jQuery.parseJSON(fmlbObjectJSONString);
+    processApp(fmlbObjectJSON);
+    console.log(fmlbObjectJSON);
+	fmlbObjectJSON.objectCSS = "<style>" + fmlbObjectJSON.css + "</style>";
+    fmlbObjectJSON.objectCard = "<div class='fmlb-card-maxi'>" + createObjectCard(fmlbObjectJSON) + "</div>";
+    var fmlbObjectName = fmlbObjectJSON.name;
+    document.title = "formulable - " + fmlbObjectName;
+
+    var fmlbObjectDescription = "";
+    if (fmlbObjectJSON.description) {
+        fmlbObjectDescription = "<div class='fmlb-object-description'>" + fmlbObjectJSON.description + "</div>";
+    }
+	
+	var fmlbObjectMedia = "";
+    if (fmlbObjectJSON.files) {
+        var fmlbEmbedableMedia = "";
+        for (objectFile in fmlbObjectJSON.files) {
+            var file = fmlbObjectJSON.files[objectFile];
+            if (file.fileType == "image") {
+                if (file.fileName == file.fileObject + "." + file.fileExtension) {
+                    html = '<div class="item fmlb-carousel-item fmlb-carousel-item-image active"><img src=\'files/' + file.fileName + '\'  alt=\'image\' fmlb-id=\'' + file.fileObject + '\'></div>';
+                    fmlbObjectJSON.image = file.fileName;
+                } else {
+                    html = '<div class="item fmlb-carousel-item fmlb-carousel-item-image"><img src=\'files/' + file.fileName + '\'  alt=\'image\' fmlb-id=\'' + file.fileObject + '\'></div>';
+                }
+            } else if (file.fileType == "video") {
+                fileType = 'video';
+                html = '<div class="item fmlb-carousel-item fmlb-carousel-item-video"><iframe src=\'files/' + file.fileName + '\' height=\'400px\' width=\'100%\' fmlb-id=\'' + file.fileObject + '\'></iframe></div>';
+            } else if (file.fileType == "audio") {
+                fileType = 'audio';
+                html = '<div class="item fmlb-carousel-item fmlb-carousel-item-audio"><iframe src=\'files/' + file.fileName + '\' height=\'400px\' width=\'100%\' fmlb-id=\'' + file.fileObject + '\'></iframe></div>';
+            }
+            fmlbEmbedableMedia = fmlbEmbedableMedia + html;
+        }
+        fmlbObjectMedia = "<div id='media carousel' class='fmlb-object-description'><div id='myCarousel' class='carousel'><div id='files-list' class='carousel-inner'>" + fmlbEmbedableMedia + "</div><a class='carousel-control left' href='#myCarousel' data-slide='prev'>&lsaquo;</a><a class='carousel-control right' href='#myCarousel' data-slide='next'>&rsaquo;</a></div></div>";
+    }
+
+    var fmlbObjectOutRelations = "";
+    if (fmlbObjectJSON.outRelations) {
+        var outRelationsObjectCards = "";
+        var outRelations = fmlbObjectJSON.outRelations;
+        for (outRelation in outRelations) {
+            outRelationsObjectCards = "<div class='fmlb-card-mini'>" + createObjectCard(JSON.parse(outRelations[outRelation])) + "</div>";
+        }
+        fmlbObjectOutRelations = "<div class='fmlb-object-out-relations'>" + outRelationsObjectCards + "</div>";
+    }
+
+    document.getElementById("fmlb-object").innerHTML = linkify(fmlbObjectJSON.objectCSS + fmlbObjectJSON.objectCard + fmlbObjectMedia + fmlbObjectDescription + fmlbObjectOutRelations);
+
+    getRelations();
+}
+
+function getMainImage(fmlbObjectJSON) {
+   if (fmlbObjectJSON.files) {
+        var fmlbEmbedableMedia = "";
+        for (objectFile in fmlbObjectJSON.files) {
+            var file = fmlbObjectJSON.files[objectFile];
+            if (file.mainImage == "true") {
+				fmlbObjectJSON.mainImage = file.fileName;
+			}
+		}
+	}
+	return fmlbObjectJSON;
+}
+
+function createNavbar(fmlbObjectJSON) {
+   var navbarObjects = fmlbObjectJSON.formulableApp.objectTypes;
+    var navbarLinks = "";
+    for (navbarObject in navbarObjects) {
+        var navbarObject = navbarObjects[navbarObject];
+        var navbarLinks = navbarLinks + "<li class='navbar-link'><span style='white-space:nowrap' class='fmlb-navbar-link'>";
+        if (fmlbAppHasIcons == true) {
+            navbarLinks = navbarLinks + "<img src='files/" + navbarObject + ".svg'alt='icon' class='icon-small'> ";
+        }
+        navbarLinks = navbarLinks + "<fmlb-link>" + navbarObject + "</fmlb-link></span></li>";
+    }
+    var navbar = "<style type='text/css'>" + fmlbObjectJSON.formulableApp.css + "</style><div id='top-navbar'><nav class='navbar navbar-default navbar-fixed-top' role='navigation'><div class='navbar-header'><button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-ex1-collapse'><span class='sr-only'>Toggle navigation</span><span class='icon-bar'></span><span class='icon-bar'></span><span class='icon-bar' class='logo'></span></button><span class='logo'><img src='files/logo.png' class='fmlb-logo'></span></div><div class='collapse navbar-collapse navbar-ex1-collapse'><ul class='nav navbar-nav'>" + navbarLinks + "  </ul><div id='fmlb-powered-by' align='right'>powered by <a href='http://formulable.com'>formulable</a></div></nav></div>";
+    document.getElementById("fmlb-navbar").innerHTML = linkify(navbar);
+}
+
+function createObjectCard(fmlbObjectJSON) {
+
+    var fmlbObjectType = "";
+    var fmlbObjectTypeIcon = "";
+	var fmlbObjectTypeHTML = "";
+    if (fmlbObjectJSON['@type']) {
+        fmlbObjectType = " " + fmlbObjectJSON['@type'] + " ";
+        if (fmlbAppHasIcons == true) {
+            fmlbObjectTypeIcon = "<img src='files/" + fmlbObjectJSON['@type'] + ".svg' alt='icon' class='fmlb-icon'>";
+        }
+		fmlbObjectTypeHTML = "<li>" + fmlbObjectTypeIcon + " " + fmlbObjectType + "</li>";
+    }
+
+    var fmlbObjectSubtype = "";
+    var fmlbObjectSubtypeIcon = "";
+	var fmlbObjectSubtypeHTML = ""
+    if (fmlbObjectJSON['@subtype']) {
+        fmlbObjectSubtype = " " + fmlbObjectJSON['@subtype'] + " ";
+        if (fmlbAppHasIcons == true) {
+            fmlbObjectSubtypeIcon = "<img src='files/" + fmlbObjectJSON['@subtype'] + ".svg' alt='icon' class='fmlb-icon'>";
+        }
+		fmlbObjectSubtypeHTML = "<li>" + fmlbObjectSubtypeIcon + " " + fmlbObjectSubtype + "</li>";
+    }
+
+    var header = "<div class='fmlb-header'><ul class='breadcrumb'>" + fmlbObjectTypeHTML + fmlbObjectSubtypeHTML + "<li><fmlb-link>" + fmlbObjectJSON.name + "</fmlb-link></li></ul></div>";
+    var propertiesArray = Object.getOwnPropertyNames(fmlbObjectJSON);
+
+	getMainImage(fmlbObjectJSON);	
+
+    var fmlbObjectMainImage = "";
+    if (fmlbObjectJSON.mainImage) {
+        var fmlbObjectMainImage = "<img src='files/" + fmlbObjectJSON.mainImage + "' alt='image' class='fmlb-thumbnail media-object'>";
+    }
+
+    var fieldsCard = "";
+    Object.getOwnPropertyNames(fmlbObjectJSON).forEach(function (val, idx, array) {
+        if (val.substring(0, 1) != "-" && val != "template" && val != "link object" && val != "media" && val != "relations" && val != "icon" && val != "inRelations" && val != "description" && val != "name" && val != "image" && val != "location" && val != "excerpt" && val != "formulableApp" && val != "lastUpdate" && val != "outRelations" && val != "relationsIds" && val != "files" && val != "@name" && val != "type" && val != "@type" && val != "objectCSS" && val != "mainImage" && val != "id" && val != "subtype") {
+            if (val.substring(0, 1) == "@") {
+                fmlbObjectJSON[val] = "<fmlb-link>" + fmlbObjectJSON[val] + "</fmlb-link>";
+                fmlbObjectJSON[val] = fmlbObjectJSON[val].replace(/ \+ /g, '</fmlb-link> + <fmlb-link>');
+            }
+            fieldsCard = fieldsCard + "<span class='fmlb-field'><span class='fmlb-field-key'>" + val + "</span>: <span class='fmlb-field-value'>" + fmlbObjectJSON[val] + "</span></span>";
+        }
+    });
+
+    var fmlbObjectExcerpt = "";
+    if (fmlbObjectJSON.description) {
+        var fmlbObjectExcerpt = "<p>" + fmlbObjectJSON.description.replace(/(<([^>]+)>)/ig, "").substring(0, 120) + "...</p>";
+    }
+
+    return header + "<div class='pull-left'>" + fmlbObjectMainImage + "</div><div class='media-body fmlb-fields-card'>" + fieldsCard + fmlbObjectExcerpt + "</div>";
+}
+
+function createFieldsCard(fmlbObjectJSON) {
+    var propertiesArray = Object.getOwnPropertyNames(fmlbObjectJSON);
+    var fieldsCard = "";
+    Object.getOwnPropertyNames(fmlbObjectJSON).forEach(function (val, idx, array) {
+        if (val.substring(0, 1) != "-" && val != "template" && val != "link object" && val != "media" && val != "relations" && val != "icon" && val != "inRelations" && val != "description" && val != "name" && val != "image" && val != "location" && val != "excerpt" && val != "formulableApp" && val != "lastUpdate") {
+            if (val.substring(0, 1) == "@") {
+                fmlbObjectJSON[val] = linkify(fmlbObjectJSON[val]);
+            }
+            fieldsCard = fieldsCard + "<span class='fmlb-field'><span class='fmlb-field-key'>" + val + "</span>: <span class='fmlb-field-value'>" + fmlbObjectJSON[val] + "</span></span>";
+        }
+    });
+    return fieldsCard;
+}
+
+function linkify(string) {
+    linkifyScriptId = "";
+    if (GetURLParameter('scriptid') != undefined) {
+        var linkifyScriptId = "scriptid=" + GetURLParameter('scriptid');
+    }
+    string = string.replace(/\<fmlb-link\>([^\<]*)\<\/fmlb-link\>/g, '<a href=\'?' + linkifyScriptId + '&id=<hyphenate>$1</hyphenate>\' class=\'fmlb-link\'>$1</a>');
+    string = hyphenate(string);
+    return string;
+}
+
+function hyphenate(string) {
+    var modified, result, output = [];
+    var re = new RegExp('<hyphenate>(.*?)</hyphenate>', 'g');
+    modified = string;
+    while ((result = re.exec(string)) !== null) {
+        modified = modified.replace(result[0], result[1].replace(/ /g, '-'));
+    }
+    output.push([modified]);
+    return output;
+}
+
+
+function getRelations() {
+    $.getScript('https://script.google.com/macros/s/' + scriptId + '/dev?id=' + id + '&getrelations=true');
+}
+
+
+function cleanObjectFields() {
+	
+}
+
+function createRelationsExplorer(relations) {
+
+    var relationsWithFields = [];
+    for (relationIndex in relations) {
+        relations[relationIndex].objectCard = linkify(createObjectCard(relations[relationIndex]));
+    }
+
+    var relationsDataset = {
+        records: relations
+    };
+
+    console.log("relationsDataset: " + JSON.stringify(relationsDataset));
+
+    //recline app
+    jQuery(function ($) {
+        window.dataExplorer = null;
+        window.explorerDiv = $('#fmlb-data-explorer');
+        // This is some fancy stuff to allow configuring the multiview from parameters in the query string
+        var state = recline.View.parseQueryString(decodeURIComponent(window.location.search));
+        if (state) {
+            _.each(state, function (value, key) {
+                try {
+                    value = JSON.parse(value);
+                } catch (e) {}
+                state[key] = value;
+            });
+        } else {
+            state.url = 'demo';
+        }
+        var dataset = null;
+        if (state.dataset || state.url) {
+            var datasetInfo = _.extend({
+                    url: state.url,
+                    backend: state.backend
+                },
+                state.dataset
+            );
+            dataset = new recline.Model.Dataset(datasetInfo);
+        } else {
+            dataset = new recline.Model.Dataset(relationsDataset, {
+                query: {
+                    size: 5
+                }
+            });
+        }
+        if (relationsDataset.records.length > 0) {
+            var $el = $('#fmlb-data-explorer');
+            createExplorer(dataset, state);
+            console.log(dataset);
+        }
+    })
+}
+
+// make Explorer creation / initialization in a function so we can call it again and again
+var createExplorer = function (dataset, state) {
+    // remove existing data explorer view
+    var reload = false;
+    if (window.dataExplorer) {
+        window.dataExplorer.remove();
+        reload = true;
+    }
+    window.dataExplorer = null;
+    var $el = $('<div />');
+    $el.appendTo(window.explorerDiv);
+
+    var template = "<div class='fmlb-card-mini'>{{{objectCard}}}</div>";
+
+    var SearchView = Backbone.View.extend({
+        initialize: function (options) {
+            this.el = $(this.el);
+            _.bindAll(this, 'render');
+            this.recordTemplate = options.template;
+            // Every time we do a search the recline.Dataset.records Backbone collection will get reset. We want to re-render each time!
+            this.model.records.bind('reset', this.render);
+            this.templateResults = options.template;
+        },
+
+        // overall template for this view
+        template: '<div class="body"><div class="sidebar"></div><div class="results">{{{results}}}</div></div><div class="pager-here"></div>',
+
+        // render the view
+        render: function () {
+            var results = '';
+            if (_.isFunction(this.templateResults)) {
+                var results = _.map(this.model.records.toJSON(), this.templateResults).join('\n');
+            } else {
+                // templateResults is just for one result ...
+                var tmpl = '{{#records}}' + this.templateResults + '{{/records}}';
+                var results = Mustache.render(tmpl, {
+                    records: this.model.records.toJSON()
+                });
+            }
+
+            var html = Mustache.render(this.template, {
+                results: results
+            });
+            this.el.html(html);
+
+            var view = new recline.View.FacetViewer({
+                model: this.model
+            });
+            view.render();
+            this.el.find('.sidebar').append(view.el);
+
+            var pager = new recline.View.Pager({
+                model: this.model.queryState
+            });
+            this.el.find('.pager-here').append(pager.el);
+
+            var queryEditor = new recline.View.QueryEditor({
+                model: this.model.queryState
+            });
+            this.el.find('.query-here').append(queryEditor.el);
+        }
+    });
+
+    var views = [{
+            id: 'search',
+            label: 'Search',
+            view: new SearchView({
+                model: dataset,
+                template: template
+            })
+        }, {
+            id: 'map',
+            label: 'Map',
+            view: new recline.View.Map({
+                model: dataset
+            })
+        }, {
+            id: 'timeline',
+            label: 'Timeline',
+            view: new recline.View.Timeline({
+                model: dataset
+            })
+        }, {
+            id: 'grid',
+            label: 'Grid',
+            view: new recline.View.SlickGrid({
+                model: dataset
+            })
+        },
+        /*
+    {
+      id: 'graph',
+      label: 'Graph',
+      view: new recline.View.Graph({
+        model: dataset,
+
+      })
+    }
+*/
+    ];
+    window.dataExplorer = new recline.View.MultiView({
+        model: dataset,
+        el: $el,
+        state: state,
+        views: views
+    });
+}
+
+</script>
+</div>
+
+<script type="text/javascript">
+(function () {
+$.getScript('https://script.google.com/macros/s/' + scriptId + '/dev?id=' + id);
+})()
+</script>
+</body>
+</html>
